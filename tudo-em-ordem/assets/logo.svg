@@ -1,0 +1,7 @@
+<svg width="140" height="36" viewBox="0 0 140 36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tudo em Ordem">
+  <rect x="1" y="1" width="138" height="34" rx="10" fill="#FFFFFF" stroke="#E3E3E3" />
+  <circle cx="18" cy="18" r="8" fill="#F5D76E" />
+  <circle cx="34" cy="18" r="8" fill="#9EC5FE" />
+  <circle cx="50" cy="18" r="8" fill="#CDB4FF" />
+  <text x="66" y="23" font-family="'Trebuchet MS', Arial, sans-serif" font-size="12" fill="#2B2B2B">TUDO EM ORDEM</text>
+</svg>

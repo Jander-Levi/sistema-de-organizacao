@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TUDO EM ORDEM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/planner.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <img src="assets/logo.svg" alt="TUDO EM ORDEM" />
+        <div>
+          <h1>TUDO EM ORDEM</h1>
+          <span class="subtitle">Planner digital pessoal</span>
+        </div>
+      </div>
+      <nav class="tabs" id="tabs"></nav>
+      <div class="workspace">
+        <span class="badge">Workspace: local</span>
+        <button class="theme-toggle" id="themeToggle" type="button">Modo escuro</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <section id="view"></section>
+    </main>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/modules/login.js"></script>
+  <script src="js/modules/habitos.js"></script>
+  <script src="js/modules/dashboard.js"></script>
+  <script src="js/modules/treinos.js"></script>
+  <script src="js/modules/casa.js"></script>
+  <script src="js/modules/viagens.js"></script>
+  <script src="js/modules/saude.js"></script>
+  <script src="js/modules/consultas.js"></script>
+  <script src="js/modules/estudos.js"></script>
+  <script src="js/modules/financas.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
