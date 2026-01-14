@@ -1,6 +1,6 @@
 (function () {
   window.FIREBASE_CONFIG = {
-    apiKey: "AIzaSyAtypws1SHnTm6gp7EGR0hVwSXfvE1uD_o",
+    apiKey: "AIzaSyD1vRyul23MW4TCJwePk16LBIa7kBZqS3w",
     authDomain: "system-a3710.firebaseapp.com",
     databaseURL: "https://system-a3710-default-rtdb.firebaseio.com",
     projectId: "system-a3710",
