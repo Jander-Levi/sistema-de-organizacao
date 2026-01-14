@@ -1,4 +1,17 @@
 (function () {
+  let pendingRender = false;
+  let scheduledView = null;
+
+  function scheduleRender(view) {
+    scheduledView = view;
+    if (pendingRender) return;
+    pendingRender = true;
+    window.requestAnimationFrame(() => {
+      pendingRender = false;
+      if (scheduledView) render(scheduledView);
+    });
+  }
+
   function calcBalance(month) {
     return (Number(month.receitas) || 0) - ((Number(month.fixos) || 0) + (Number(month.variaveis) || 0) + (Number(month.dividas) || 0));
   }
@@ -24,7 +37,7 @@
         moduleData._meta = moduleData._meta || {};
         moduleData._meta.filterText = value;
       });
-      render(view);
+      scheduleRender(view);
     });
     view.appendChild(filterBar);
 
@@ -78,7 +91,7 @@
       StorageAPI.update("financas", (moduleData, rootData) => {
         rootData.filters.monthYear = monthInput.value;
       });
-      render(view);
+      scheduleRender(view);
     });
     filterRow.appendChild(monthInput);
     filterBody.appendChild(filterRow);
@@ -107,14 +120,14 @@
             moduleData[listKey][index].valor = UI.parseNumber(novoValor);
             moduleData[listKey][index].data = novaData || "";
           });
-          render(view);
+          scheduleRender(view);
         });
         const remove = UI.el("button", "icon-button", "x");
         remove.addEventListener("click", () => {
           StorageAPI.update("financas", (moduleData) => {
             moduleData[listKey].splice(index, 1);
           });
-          render(view);
+          scheduleRender(view);
         });
         row.appendChild(edit);
         row.appendChild(remove);
@@ -144,7 +157,7 @@
         descricao.value = "";
         valor.value = "";
         dataInput.value = "";
-        render(view);
+        scheduleRender(view);
       });
       inputRow.appendChild(descricao);
       inputRow.appendChild(valor);
@@ -190,7 +203,7 @@
         StorageAPI.update("financas", (moduleData) => {
           moduleData.selectedMes = index;
         });
-        render(view);
+        scheduleRender(view);
       });
       monthsList.appendChild(btn);
     });
@@ -253,14 +266,14 @@
           moduleData.links[index].text = novoTexto.trim();
           moduleData.links[index].url = novaUrl ? novaUrl.trim() : "https://";
         });
-        render(view);
+        scheduleRender(view);
       });
       const remove = UI.el("button", "icon-button", "x");
       remove.addEventListener("click", () => {
         StorageAPI.update("financas", (moduleData) => {
           moduleData.links.splice(index, 1);
         });
-        render(view);
+        scheduleRender(view);
       });
       row.appendChild(edit);
       row.appendChild(remove);
@@ -284,8 +297,8 @@
       });
       linkText.value = "";
       linkUrl.value = "";
-      render(view);
-    });
+        scheduleRender(view);
+      });
     linkRow.appendChild(linkText);
     linkRow.appendChild(linkUrl);
     linkRow.appendChild(addLink);
