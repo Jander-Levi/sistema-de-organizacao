@@ -53,7 +53,15 @@
     }
   }
 
+  let appStarted = false;
+
   function startApp() {
+    if (appStarted) {
+      renderTabs();
+      Router.render();
+      return;
+    }
+    appStarted = true;
     renderTabs();
     initTheme();
     window.addEventListener("hashchange", Router.render);
@@ -73,27 +81,26 @@
           return;
         }
         const workspace = StorageAPI.getWorkspace();
+        startApp();
+        window.FirebaseAPI.subscribe(workspace, (remote) => {
+          if (remote) {
+            StorageAPI.saveFromRemote(remote);
+            Router.render();
+          }
+        });
         window.FirebaseAPI.pull(workspace)
           .then((remote) => {
             try {
               if (remote) {
                 StorageAPI.saveFromRemote(remote);
+                Router.render();
               } else {
                 window.FirebaseAPI.push(workspace, localData);
               }
             } catch (err) {
             }
           })
-          .catch(() => {})
-          .finally(() => {
-            window.FirebaseAPI.subscribe(workspace, (remote) => {
-              if (remote) {
-                StorageAPI.saveFromRemote(remote);
-                Router.render();
-              }
-            });
-            startApp();
-          });
+          .catch(() => {});
       });
     } else {
       startApp();
